@@ -7,6 +7,9 @@ eureka:
       defaultZone: http://localhost:8097/eureka/
 
 spring:
+  security:
+      basic:
+        enabled: false
   cloud:
     gateway:
       discovery:
