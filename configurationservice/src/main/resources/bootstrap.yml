@@ -1,0 +1,17 @@
+server:
+  port: 8097
+spring:
+  cloud:
+    bootstrap: 
+        enabled: true
+    config:
+      server:
+        git:
+          uri: https://github.com/tropsmart/TS_ms_config-data.git
+          searchPaths: config-data
+          username: carlos18mz
+          password: password$
+          default-label: "master"
+  security:
+    basic:
+      enabled: false
