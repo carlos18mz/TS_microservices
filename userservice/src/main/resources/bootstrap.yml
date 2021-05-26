@@ -4,20 +4,6 @@ server:
 spring:
     application:
         name: userservice
-    datasource:
-        url: jdbc:mysql://localhost:3306/userservice?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-        username: root
-        password:
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    h2:
-        console:
-            enabled: true
-            path: /console
     cloud:
         config:
             uri: http://localhost:8081
@@ -28,20 +14,11 @@ spring:
             client:
                 url: http://localhost:8086
 
-eureka:
-    client:
-        service-url:
-            defaultZone: http://localhost:8099/eureka
 
-management:
-    endpoints:
-        web:
-            exposure:
-                include: "*"
-
-
-
-
+env:
+  jwtSecret: fdsfdfokpokposdwkfposksd
+  jwtExpiration: 200000
+  refreshTokenExpiration: 30000
 #server.port=${PORT:8082}
 #spring.cloud.config.server.git.uri=https://github.com/tropsmart/TS_mi_config.git
 
@@ -51,3 +28,4 @@ management:
 
 #SPRING_PROFILES_ACTIVE=native
 #spring.config.import=optional:configserver:http://localhost:8888/
+

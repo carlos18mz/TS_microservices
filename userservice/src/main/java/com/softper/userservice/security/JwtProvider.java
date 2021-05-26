@@ -3,7 +3,9 @@ package com.softper.userservice.security;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +16,19 @@ import java.util.UUID;
 public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    
+    @Autowired
+    private Environment env;
 
-    @Value("${env.jwtSecret}")
-    private String jwtSecret;
 
-    @Value("${env.jwtExpiration}")
-    private int jwtExpiration;
+    //@Value("${env.jwtSecret}")
+    private String jwtSecret= "fdsfdfokpokposdwkfposksd";
 
-    @Value("${env.refreshTokenExpiration}")
-    private int refreshTokenExpiration;
+    //@Value("${env.jwtExpiration}")
+    private int jwtExpiration = 200000;
+
+    //@Value("${env.refreshTokenExpiration}")
+    private int refreshTokenExpiration = 30000;
 
     public String generateJwtToken(Authentication authentication) {
 

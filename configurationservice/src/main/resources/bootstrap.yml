@@ -7,7 +7,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/tropsmart/TS_ms_config-data.git
+          #uri: https://github.com/tropsmart/TS_ms_config-data.git
+          uri: C:\Users\51931\Desktop\VSCode\TropSmart\FundaSoftware
           searchPaths: config-data
           username: carlos18mz
           password: password$

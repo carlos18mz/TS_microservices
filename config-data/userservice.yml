@@ -42,8 +42,3 @@ springdoc:
     path: /ts-api-docs
   swagger-ui:
     path: /index.html
-
-env:
-  jwtSecret: fdsfdfokpokposdwkfposksd
-  jwtExpiration: 200000
-  refreshTokenExpiration: 30000
