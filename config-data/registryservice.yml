@@ -1,6 +1,12 @@
 server:
   port: 8099
 
+
+spring:
+  security:
+    basic:
+      enabled: false
+      
 eureka:
   instance:
     hostname: localhost
@@ -9,7 +15,3 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-spring:
-  security:
-    basic:
-      enabled: false
