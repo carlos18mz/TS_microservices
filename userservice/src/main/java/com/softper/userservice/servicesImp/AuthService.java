@@ -19,21 +19,23 @@ import com.softper.userservice.resources.inputs.RefreshInput;
 import com.softper.userservice.resources.inputs.SignUp;
 import com.softper.userservice.resources.outputs.AuthenticatedOutput;
 import com.softper.userservice.resources.outputs.UserOutput;
-import com.softper.userservice.security.JwtProvider;
+//import com.softper.userservice.security.JwtProvider;
 import com.softper.userservice.services.IAuthService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+//import io.jsonwebtoken.Jwts;
+//import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.hibernate.validator.cfg.GenericConstraintDef;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.AuthorityUtils;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -42,7 +44,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-
+@Slf4j
 @Service
 public class AuthService implements IAuthService {
 
@@ -59,18 +61,20 @@ public class AuthService implements IAuthService {
     @Autowired
     private IBalanceRepository balanceRepository;
     
-    @Autowired
-    private JwtProvider jwtProvider;
+    //@Autowired
+    //private JwtProvider jwtProvider;
 
     //@Autowired
     //private ICustomerRepository customerRepository;
-    @Autowired
-    private CustomerClient customerClient;
+    
+    //@Autowired
+    //CustomerClient customerClient;
 
     //@Autowired
     //private IDriverRepository driverRepository;
-    @Autowired
-    private DriverClient driverClient;
+    
+    //@Autowired
+    //DriverClient driverClient;
 
     //@Autowired
     //private IQualificationRepository qualificationRepository;
@@ -80,8 +84,9 @@ public class AuthService implements IAuthService {
 
     //@Autowired
     //private IConfigurationRepository configurationRepository;
+    
     @Autowired
-    private ConfigurationClient configurationClient;
+    ConfigurationClient configurationClient;
 
 
     //@Autowired
@@ -122,6 +127,7 @@ public class AuthService implements IAuthService {
                 //newConfiguration.setPaymentCurrency("Soles");
     
                 //newConfiguration = configurationRepository.save(newConfiguration);
+                
                 ConfigBoundResponse configurationResponse = configurationClient.generateConfiguration(8).getBody();
 
 
@@ -140,7 +146,7 @@ public class AuthService implements IAuthService {
                 user.setPassword(signUp.getPassword());
                 user.setCreatedAt(Calendar.getInstance().getTime());
                 //user.setConfiguration(newConfiguration);
-                user.setConfigurationId(configurationResponse.getConfigurationOutput().getId());
+                //user.setConfigurationId(configurationResponse.getConfigurationOutput().getId());
                 user.setBalance(newBalance);
     
                 user = userRepository.save(user);
@@ -153,9 +159,10 @@ public class AuthService implements IAuthService {
 
                     //newPerson.setCustomer(newCustomer);
                     //customerRepository.save(newCustomer);
-                    Customer newCustomer = customerClient.generateNewCustomer(newPerson.getId()).getBody();
+                    
+                    /*Customer newCustomer = customerClient.generateNewCustomer(newPerson.getId()).getBody();
                     newPerson.setCustomerId(newCustomer.getId());
-                    newPerson.setCustomer(newCustomer);
+                    newPerson.setCustomer(newCustomer);*/
                 }
                 else
                 {
@@ -180,9 +187,9 @@ public class AuthService implements IAuthService {
                     
                     //driverRepository.save(newDriver);
 
-                    Driver newDriver = driverClient.generateNewDriver(newPerson.getId()).getBody();
+                    /*Driver newDriver = driverClient.generateNewDriver(newPerson.getId()).getBody();
                     newPerson.setDriverId(newDriver.getId());
-                    newPerson.setDriver(newDriver);
+                    newPerson.setDriver(newDriver);*/
                 }
     
                 //response.setResource(new AuthenticatedOutput(user.getId(),user.getEmail(),user.getPassword(),signUp.getFirstName(),signUp.getLastName(),signUp.getDiscriminator()));

@@ -61,9 +61,6 @@ public class AuthenticationController {
     @PostMapping(value = "/sign-up")
     public ResponseEntity<UserBoundResponse> SignUp(@Valid @RequestBody SignUp signUp) throws Exception {
 
-        if(signUp == null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
         UserBoundResponse result = authService.registerComplete(signUp);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }

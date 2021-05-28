@@ -10,11 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@FeignClient("CONFIG-SERVICE")
-@RequestMapping("api/configurations")
+@FeignClient(name = "configservice")
 public interface ConfigurationClient {
     
-    @PostMapping("/")
+    @RequestMapping(method = RequestMethod.POST, value = "api/configurations")
     public ResponseEntity<ConfigBoundResponse> generateConfiguration(@PathVariable(value = "userId")int userId);
     
     

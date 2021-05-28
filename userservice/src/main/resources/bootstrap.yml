@@ -1,31 +1,61 @@
 server:
-    port: 8092
+  port: 8091
 
 spring:
-    application:
-        name: userservice
-    cloud:
-        config:
-            uri: http://localhost:8081
-            username: root
-            password: s3cr3t
-    boot:
-        admin:
-            client:
-                url: http://localhost:8086
+  application:
+    name: userservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/userservice?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  h2: 
+    console:
+      enabled: true
+      path: /console
+  security:
+      basic:
+          enabled: false
+      user:
+          name: root
+          password: s3cr3t
+  cloud:
+    config:
+      uri: http://localhost:8097
+      username: root
+      password: s3cr3t
+  #loadbalancer:
+  #    ribbon:
+  #        enabled: false
+  boot:
+      admin:
+          client:
+              url: http://localhost:8086
 
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8099/eureka
 
-env:
-  jwtSecret: fdsfdfokpokposdwkfposksd
-  jwtExpiration: 200000
-  refreshTokenExpiration: 30000
-#server.port=${PORT:8082}
-#spring.cloud.config.server.git.uri=https://github.com/tropsmart/TS_mi_config.git
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    security:
+        enabled: false 
+springdoc:
+    api-docs:
+        path: /ts-api-docs
+    swagger-ui:
+        path: /index.html
 
-#spring.security.user.name: root
-#spring.security.user.password: s3cr3t
-#spring.cloud.config.server.native.searchLocations=file://${user.home}/MicroService/centralProperties/
-
-#SPRING_PROFILES_ACTIVE=native
-#spring.config.import=optional:configserver:http://localhost:8888/
+feign:
+    hystrix:
+        enabled: true
 
